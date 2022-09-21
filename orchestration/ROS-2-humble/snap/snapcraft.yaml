@@ -1,0 +1,53 @@
+name: talker-listener
+version: '0.1'
+summary: ROS 2 Talker/Listener Example
+description: |
+ This example launches a ROS 2 talker and listener.
+
+confinement: strict
+grade: stable
+base: core22
+
+parts:
+ ros-demos:
+   plugin: colcon
+   source: https://github.com/ros2/demos.git
+   source-branch: humble
+   source-subdir: demo_nodes_cpp
+   stage-packages: [ros-humble-ros2run, ros-humble-ros2node]
+
+ # copy local scripts to the snap usr/bin
+# local-files:
+#   plugin: dump
+#   source: snap/local/
+#   stage-packages: [grep]
+#   organize:
+#     '*.sh': usr/bin/
+
+apps:
+ listener:
+   command: opt/ros/humble/bin/ros2 run demo_nodes_cpp listener
+#   daemon: simple
+   plugs: [network, network-bind]
+   extensions: [ros2-humble]
+
+# listener-waiter:
+#   command: usr/bin/listener-waiter.sh
+#   daemon: oneshot
+#   before: [talker]
+#   after: [listener]
+#   plugs: [network, network-bind]
+#   extensions: [ros2-humble]
+#   # Necessary for python3 ROS app
+#   environment:
+#             "LD_LIBRARY_PATH": "$LD_LIBRARY_PATH:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/blas:$SNAP/usr/lib/$SNAPCRAFT_ARCH_TRIPLET/lapack"
+
+ talker:
+#   command-chain: [usr/bin/command-chain-talker.sh]
+   command: opt/ros/humble/bin/ros2 run demo_nodes_cpp talker
+   plugs: [network, network-bind]
+#   daemon: simple
+#   stop-command: usr/bin/stop-command.sh
+#   post-stop-command: usr/bin/post-stop-command.sh
+   extensions: [ros2-humble]
+
