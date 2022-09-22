@@ -5,7 +5,7 @@ This repository present a simple ROS 2 Humble talker-listener snapped as well as
 ## Install the snap
 Make sure [`snapd`](https://snapcraft.io/docs/installing-snapd) and [`snapcraft`](https://snapcraft.io/snapcraft) are both installed on your computer.
 
-Then at the root of this repository run:
+Then at the root of this file:
 
 `SNAPCRAFT_ENABLE_EXPERIMENTAL_EXTENSIONS=1 snapcraft`
 
