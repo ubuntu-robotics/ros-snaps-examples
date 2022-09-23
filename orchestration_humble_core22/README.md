@@ -14,5 +14,3 @@ Then at the root of this file:
 ## Usage
 Please refer to Canonical's [blog](https://ubuntu.com/blog/ros-orchestration-with-snaps) for usage.
 
-### Feedback
-If you have any feedback, questions or ideas regarding ROS snap orchestration, please join [our forum](https://forum.snapcraft.io/) and let us know what you think. Furthermore, have a look at the [snap documentation](https://snapcraft.io/docs/robotics) if you want to learn more about snaps for [robotics applications](https://ubuntu.com/robotics).
