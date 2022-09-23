@@ -1,7 +1,7 @@
 # ros-snaps-examples
 ROS and ROS 2 snaps examples
 
-This repository hold examples used in documentation as well as blogpost.
+This repository hold examples used in documentation and blogposts.
 
 ## Examples
 
