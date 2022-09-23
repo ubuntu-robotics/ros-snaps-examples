@@ -1,0 +1,42 @@
+name: ros2-shared-memory
+version: '0.1'
+summary: ROS2 shared-memory example
+description: |
+  This example launches a ROS2 talker and listener with shared-memory
+
+confinement: strict
+base: core20
+
+
+parts:
+  fastdds:
+    plugin: colcon
+    source: https://github.com/eProsima/Fast-DDS.git
+    source-tag: "v2.1.1"
+    colcon-cmake-args:
+            - -DCMAKE_BUILD_TYPE=Release
+            - -DSHM_TRANSPORT_DEFAULT=OFF
+    build-packages:
+            - libasio-dev
+            - ros-foxy-fastcdr
+            - nlohmann-json3-dev
+            - ros-foxy-tinyxml2-vendor
+    stage-packages:
+            - ros-foxy-fastcdr
+            - ros-foxy-tinyxml2-vendor
+  ros-demos:
+    after: [fastdds]
+    plugin: colcon
+    source: https://github.com/ros2/demos.git
+    source-branch: foxy
+    source-subdir: demo_nodes_cpp
+    stage-packages: [ros-foxy-ros2launch]
+    stage:
+            - -opt/ros/snap/*setup.sh
+
+apps:
+  ros2-talker-listener:
+    command: opt/ros/foxy/bin/ros2 launch demo_nodes_cpp talker_listener.launch.py
+    extensions: [ros2-foxy]
+    plugs: [network, network-bind]
+
