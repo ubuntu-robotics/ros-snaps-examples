@@ -1,0 +1,40 @@
+name: snapped-ros1-pkg # you probably want to 'snapcraft register <name>'
+base: core20 # the base snap is the execution environment for this snap
+version: '0.1' # just for humans, typically '1.2+git' or '1.3.2'
+summary: Basic ROS1 package snap # 79 char long summary
+description: |
+  Basic ROS1 package snap with config and launchfile based on core20
+grade: stable # must be 'stable' to release into candidate/stable channels
+confinement: strict # use 'strict' once you have the right plugs and slots
+
+parts:
+  snapped-ros1-pkg:
+    # See 'snapcraft plugins'
+    plugin: catkin
+    source: .
+    build-packages:
+      - libboost-filesystem1.71.0
+      - liblog4cxx-dev
+      - libboost-regex1.71.0
+      - git
+      - python3-vcstool
+    stage-packages:
+      - ros-noetic-rosbash # necessary if we need rosrun
+      - ros-noetic-roslaunch # necessary if we need roslaunch
+    override-pull: |
+          # retrieve the vcs collection from github
+          #if [ ! -f snapped_ros1_pkg.rosinstall ]; then wget https://raw.githubusercontent.com/Guillaumebeuzeboc/snapped_ros1_rosinstall/main/snapped_ros1_pkg.rosinstall; fi
+          snapcraftctl pull # Here we are going to use the local .rosinstall file
+          # import ROS 1 package
+          vcs import < snapped_ros1_pkg.rosinstall
+
+apps:
+  snapped-ros1-pkg:
+    command: opt/ros/noetic/bin/rosrun snapped_ros1_pkg snapped_ros1_pkg_node
+    plugs: [network, network-bind]
+    extensions: [ros1-noetic]
+
+  snapped-ros1-launch:
+    command: opt/ros/noetic/bin/roslaunch snapped_ros1_pkg snapped.launch
+    plugs: [network, network-bind]
+    extensions: [ros1-noetic]
