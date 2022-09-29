@@ -3,7 +3,7 @@
 <package format="3">
   <name>ros2_listener_component</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
+  <description>ROS 2 listener component</description>
   <maintainer email="guillaume.beuzeboc@canonical.com">gbeuzeboc</maintainer>
   <license>GPLv3</license>
 

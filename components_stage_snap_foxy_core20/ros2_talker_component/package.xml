@@ -3,7 +3,7 @@
 <package format="3">
   <name>ros2_talker_component</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
+  <description>ROS 2 talker component launching and loading the talker and the listener component</description>
   <maintainer email="guillaume.beuzeboc@canonical.com">gbeuzeboc</maintainer>
   <license>GPLv3</license>
 
