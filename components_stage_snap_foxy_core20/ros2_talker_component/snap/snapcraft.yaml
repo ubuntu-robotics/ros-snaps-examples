@@ -1,4 +1,3 @@
-
 name: ros2-talker-component
 version: '0.1'
 summary: Basic ROS2 talker component
