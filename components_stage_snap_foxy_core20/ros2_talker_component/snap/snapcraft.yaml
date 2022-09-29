@@ -1,0 +1,22 @@
+
+name: ros2-talker-component
+version: '0.1'
+summary: Basic ROS2 talker component
+description: |
+  Basic ROS2 talker component based on core20
+grade: stable
+confinement: strict
+base: core20
+
+parts:
+  talker-component:
+    plugin: colcon
+    source: .
+    stage-packages: [ros-foxy-ros2launch]
+    stage-snaps: [ros2-listener-component]
+
+apps:
+  ros2-talker-component:
+    command: opt/ros/foxy/bin/ros2 launch ros2_talker_component talker_listener_components.launch.py
+    plugs: [network, network-bind]
+    extensions: [ros2-foxy]

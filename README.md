@@ -5,6 +5,7 @@ This repository hold examples used in documentation as well as blogpost.
 
 ## Examples
 
+- [components_stage_snap_foxy_core20](./components_stage_snap_foxy_core20/README.md) - Use the `stage-snap` feature of snapcraft to load a ROS 2 component built in another snap
 - [orchestration_humble_core22](./orchestration_humble_core22/README.md) - Orchestration of a talker listener with snap features and ROS 2 Humble and core22
 - [shared_memory_foxy_core20](./shared_memory_foxy_core20/README.md) - Leverage shared memory feature of ROS 2 in snaps.
 
