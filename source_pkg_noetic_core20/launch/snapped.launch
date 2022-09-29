@@ -1,0 +1,5 @@
+<launch>
+  <node name="snapped_ros1_pkg_node" pkg="snapped_ros1_pkg" type="snapped_ros1_pkg_node">
+    <rosparam command="load" file="$(find snapped_ros1_pkg)/config/config.yaml" />
+  </node>
+</launch>
