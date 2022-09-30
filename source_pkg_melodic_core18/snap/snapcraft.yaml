@@ -20,10 +20,7 @@ parts:
       - -lib/systemd/system/sudo.service
 
 apps:
-#  roscore:   # necessary only if you want to start the roscore from this snap
-#    command: opt/ros/melodic/bin/roscore
-#    plugs: [network, network-bind]
-#
+  # launching this application doesn't start the roscore unlike the second app using the launchfile
   snapped-ros1-pkg:
     command: opt/ros/melodic/bin/rosrun snapped_ros1_pkg snapped_ros1_pkg_node
     plugs: [network, network-bind]
