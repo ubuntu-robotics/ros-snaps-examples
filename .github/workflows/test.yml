@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - id: dirs
-        run: echo "::set-output name=dirs::$(find . -type f -name 'snapcraft.yaml' | sed -r 's|\/snap/[^/]+$||' |sort |uniq |jq --raw-input --slurp --compact-output 'split("\n")[:-1]')"
+        run: echo "dirs=$(find . -type f -name 'snapcraft.yaml' | sed -r 's|\/snap/[^/]+$||' |sort |uniq |jq --raw-input --slurp --compact-output 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
 
   # Run snapcraft for each example
   run_tests:
