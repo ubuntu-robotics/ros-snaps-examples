@@ -13,8 +13,7 @@ parts:
     source: .
     colcon-source-space: snapped_ros2_pkg
     colcon-rosdistro: dashing
-    stage-packages:
-      - ros-dashing-ros2launch
+    stage-packages: [ros-dashing-ros2launch]
 
 apps:
   snapped-ros2-launch:
