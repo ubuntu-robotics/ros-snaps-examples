@@ -22,11 +22,9 @@ parts:
       - ros-noetic-rosbash # necessary if we need rosrun
       - ros-noetic-roslaunch # necessary if we need roslaunch
     override-pull: |
-          # retrieve the vcs collection from github
-          #if [ ! -f snapped_ros1_pkg.rosinstall ]; then wget https://raw.githubusercontent.com/Guillaumebeuzeboc/snapped_ros1_rosinstall/main/snapped_ros1_pkg.rosinstall; fi
           snapcraftctl pull # Here we are going to use the local .rosinstall file
           # import ROS 1 package
-          vcs import < snapped_ros1_pkg.rosinstall
+          vcs import --input snapped_ros1_pkg.rosinstall
 
 apps:
   # launching this application doesn't start the roscore unlike the second app using the launchfile
