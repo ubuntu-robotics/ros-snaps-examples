@@ -12,7 +12,7 @@ parts:
     # See 'snapcraft plugins'
     plugin: catkin
     source: .
-    catkin-packages: roscpp_tutorials
+    catkin-packages: [roscpp_tutorials]
     build-packages:
       - git
       - python3-vcstool
