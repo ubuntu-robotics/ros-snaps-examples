@@ -1,15 +1,15 @@
 # Snap GitHub Action
 
-To keep you developement in sync with your deployment snaps can be built and published from a GitHub Action.
+To keep your deployment in sync with your developement, snaps can be built and published from a GitHub Action.
 
 For this example, the GitHub Action will build and publish the [ros2-private-shared-memory](../shared_memory_foxy_core20/private-shared-memory/snap/snapcraft.yaml) snap example.
 
 The result of see the results of this workflow in the [Action tab](https://github.com/ubuntu-robotics/ros-snaps-examples/actions/workflows/example_snap_github_action.yaml).
 
 # GitHub Action
-The GitHub Action file must be placed at [`.github/workflows`](../.github/workflows/). For simplicity here we have a symbolic link pointing to this GitHub workflow file.
+The GitHub Action file, here [`example_snap_github_action.yaml`](../.github/workflows/example_snap_github_action.yaml), must be placed in the [`.github/workflows`](../.github/workflows/) directory.
 
-This GitHub workflow uses two GitHub Action specific to snap:
+This GitHub workflow uses two Actions:
 - [snapcore/action-build](https://github.com/snapcore/action-build): Action to build a snapcraft project
 - [snapcore/action-publish](https://github.com/snapcore/action-publish): Action for publishing snaps
 
@@ -19,7 +19,7 @@ The first job: `build` can be triggered manually and is triggered automatically 
 
 Additionally the job make sure the built snap is installable and perform a basic test by calling the command.
 
-Finally the job upload the `.snap` so it can be used by the next job. The uploaded artifact can also be downloaded from the GitHub interface.
+Finally the job creates an artifact of the `.snap` so that it can be used by the next job. The artifact can also conveniently be downloaded from the GitHub interface.
 
 ## Job: `publish`
 
@@ -28,15 +28,15 @@ The `publish` job is triggered after the `build` job but only if the GitHub Acti
 The job starts by downloading the previously stored snap file.
 Then the snap file is uploaded to the [snapstore](https://snapcraft.io/ros2-shared-memory).
 
-The snap is published to a different [snapstore channel](https://snapcraft.io/docs/channels) depending if the current commit has been tagged or not.
+The snap is published to a different [snapstore channel](https://snapcraft.io/docs/channels) depending if the current commit has been tagged (`candidate` channel) or not (`edge` channel).
 
 # `STORE_LOGIN`
 
-For the [snapcore/action-publish](https://github.com/snapcore/action-publish) to be authorized to publish to snap for you, you must give it the right permission.
+For the [snapcore/action-publish](https://github.com/snapcore/action-publish) to be authorized to publish to the snap store for you, you must give it the right permission.
 This permission is given by a token that you can store in the `STORE_LOGIN` secret and then assign to the environement variable `SNAPCRAFT_STORE_CREDENTIALS`.
 
 ## Export the credential
-You can export your credential from the snapcraft by typing:
+You can export your credential from snapcraft cli by typing:
 
 `snapcraft export-login --snaps=${YOUR_SNAP_NAME} --acls package_access,package_push,package_update,package_release exported.txt`
 
