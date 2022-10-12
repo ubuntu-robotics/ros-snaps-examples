@@ -1,10 +1,10 @@
 # Snap GitHub Action
 
-To keep your deployment in sync with your developement, snaps can be built and published from a GitHub Action.
+To keep our deployment in sync with our developement, snaps can be built and published from a GitHub Action.
 
 For this example, the GitHub Action will build and publish the [ros2-private-shared-memory](../shared_memory_foxy_core20/private-shared-memory/snap/snapcraft.yaml) snap example.
 
-The result of see the results of this workflow in the [Action tab](https://github.com/ubuntu-robotics/ros-snaps-examples/actions/workflows/example_snap_github_action.yaml).
+We can see the results of this workflow in the [Action tab](https://github.com/ubuntu-robotics/ros-snaps-examples/actions/workflows/example_snap_github_action.yaml).
 
 # GitHub Action
 The GitHub Action file, here [`example_snap_github_action.yaml`](../.github/workflows/example_snap_github_action.yaml), must be placed in the [`.github/workflows`](../.github/workflows/) directory.
@@ -32,20 +32,20 @@ The snap is published to a different [snapstore channel](https://snapcraft.io/do
 
 # `STORE_LOGIN`
 
-For the [snapcore/action-publish](https://github.com/snapcore/action-publish) to be authorized to publish to the snap store for you, you must give it the right permission.
-This permission is given by a token that you can store in the `STORE_LOGIN` secret and then assign to the environement variable `SNAPCRAFT_STORE_CREDENTIALS`.
+For the [snapcore/action-publish](https://github.com/snapcore/action-publish) to be authorized to publish to the snap store for us, we must give it the right permission.
+This permission is given by a token that we can store in the `STORE_LOGIN` secret and then assign to the environement variable `SNAPCRAFT_STORE_CREDENTIALS`.
 
 ## Export the credential
-You can export your credential from snapcraft cli by typing:
+We can export our credential from snapcraft cli by typing:
 
 `snapcraft export-login --snaps=${YOUR_SNAP_NAME} --acls package_access,package_push,package_update,package_release exported.txt`
 
-Make sure to replace `${YOUR_SNAP_NAME}` with the name of your snap. Here: `ros2-shared-memory`.
+`${YOUR_SNAP_NAME}` must be replace by the actual snap name. Here: `ros2-shared-memory`.
 
 This command generate a file called `exported.txt` that contains the secret value we need to export in GitHub.
 
 ## Store the credential in GitHub
-- In your GitHub project on [github.com](github.com) go to the "Settings" tab
+- In our GitHub project on [github.com](github.com) go to the "Settings" tab
 - Under the "Security" section, expand "Secrets" and the select "Actions"
 - Choose "New repository secret".
 - Set the name to `STORE_LOGIN`, and paste the content of the `exported.txt` file as the value.
