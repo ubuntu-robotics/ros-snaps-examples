@@ -1,5 +1,5 @@
 # Non LTS ROS snap
-via [extensions](https://snapcraft.io/docs/supported-extensions), snapcraft offers support LTS versions of ROS.
+snapcraft offers support for LTS versions of ROS via [extensions](https://snapcraft.io/docs/supported-extensions), They factorize some YAML code that are common to ROS snaps. While convenient, they are not necessary.
 
 With some extra work you can still build a ROS snap without an extensions. Here we give an example by building a ROS 2 Galactic snap.
 
