@@ -51,6 +51,7 @@ jobs:
 
       # @todo set unique artifact or snap names
       - uses: actions/upload-artifact@v3
+        continue-on-error: true
         with:
           name: snaps
           path: ${{ steps.build-snap.outputs.snap }}
