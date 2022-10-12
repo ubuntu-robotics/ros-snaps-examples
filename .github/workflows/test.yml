@@ -1,0 +1,57 @@
+name: test examples
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+  schedule:
+    # Twice a month
+    - cron: '0 0 1,15 * *'
+  workflow_dispatch:
+
+jobs:
+
+  # Collect all relative paths containing a 'snap/snapcraft.yaml'
+  collect_dirs:
+    runs-on: ubuntu-latest
+    outputs:
+      dirs: ${{ steps.dirs.outputs.dirs }}
+    steps:
+      - uses: actions/checkout@v3
+      - id: dirs
+        run: echo "::set-output name=dirs::$(find . -type f -name 'snapcraft.yaml' | sed -r 's|\/snap/[^/]+$||' |sort |uniq |jq --raw-input --slurp --compact-output 'split("\n")[:-1]')"
+
+  # Run snapcraft for each example
+  run_tests:
+    needs: collect_dirs
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        dir: ${{ fromJson(needs.collect_dirs.outputs.dirs) }}
+    name: "Snap ${{ matrix.dir }}"
+    steps:
+      - uses: actions/checkout@v3
+      - uses: snapcore/action-build@v1
+        id: build-snap
+        with:
+          # Select the example we want to build
+          path: "${{ matrix.dir }}"
+          snapcraft-args: '--enable-experimental-extensions'
+          snapcraft-channel: 'stable'
+        env:
+          SNAPCRAFT_ENABLE_EXPERIMENTAL_EXTENSIONS: 1
+
+      # Make sure the snap is installable
+      - run: sudo snap install --dangerous ${{ steps.build-snap.outputs.snap }}
+
+      # Do some testing with the snap
+      # - run: ros2-shared-memory.ros2-talker-listener --print
+
+      # @todo set unique artifact or snap names
+      - uses: actions/upload-artifact@v3
+        with:
+          name: snaps
+          path: ${{ steps.build-snap.outputs.snap }}
+          retention-days: 7
