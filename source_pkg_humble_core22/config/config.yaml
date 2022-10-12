@@ -1,0 +1,3 @@
+snapped_ros2_pkg_node:
+  ros__parameters:
+    publish_rate: 1
