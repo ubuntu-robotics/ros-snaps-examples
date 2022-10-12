@@ -1,0 +1,21 @@
+name: snapped-ros2-pkg
+version: '0.1'
+summary: Basic ROS 2 package snap
+description: |
+  Basic ROS 2 package snap with config and launchfile based on core18
+grade: stable
+confinement: strict
+base: core18
+
+parts:
+  snapped-ros2-pkg:
+    plugin: colcon
+    source: .
+    colcon-source-space: snapped_ros2_pkg
+    colcon-rosdistro: dashing
+    stage-packages: [ros-dashing-ros2launch]
+
+apps:
+  snapped-ros2-launch:
+    command: opt/ros/dashing/bin/ros2 launch snapped_ros2_pkg snapped.launch.py
+    plugs: [network, network-bind]
