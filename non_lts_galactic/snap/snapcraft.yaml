@@ -8,29 +8,32 @@ grade: devel
 confinement: strict
 base: core20
 
+# Authorize our GPG key and add the ROS 2 APT package repository
 package-repositories:
-- components: [main]
-  formats: [deb]
-  key-id: C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
-  key-server: keyserver.ubuntu.com
-  suites: [focal]
-  type: apt
-  url: http://repo.ros2.org/ubuntu/main
+- components: [main] # Apt repository components to enable
+  formats: [deb] # List of deb types to enable
+  key-id: C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654 # 40 character GPG key identifier
+  key-server: keyserver.ubuntu.com # Key server to fetch key
+  suites: [focal] # Repository suites to enable
+  type: apt # Specifies type of package-repository
+  url: http://repo.ros2.org/ubuntu/main # Repository URL
 
 parts:
+  # Create an additional part downloading the core meta-package and importing the ROS 2 command-chain
   ros2-galactic-extension:
-    build-packages: [ros-galactic-ros-core]
-    override-build: install -D -m 0755 launch ${SNAPCRAFT_PART_INSTALL}/snap/command-chain/ros2-launch
-    plugin: nil
-    source: $SNAPCRAFT_EXTENSIONS_DIR/ros2
+    build-packages: [ros-galactic-ros-core] # Installing the core meta-package
+    override-build: install -D -m 0755 launch ${SNAPCRAFT_PART_INSTALL}/snap/command-chain/ros2-launch # Install the ros2-launch script responsible of sourcing your ROS environment
+    plugin: nil # Plugin for parts with no source to import
+    source: $SNAPCRAFT_EXTENSIONS_DIR/ros2 # Get the ros2-launch script from snapcraft itself
 
   ros-demos:
-    after: [ros2-galactic-extension]
+    after: [ros2-galactic-extension] # This part depend on the ros2-galactic-extension part and every step will happen after the depending part steps
     plugin: colcon
     source: https://github.com/ros2/demos.git
     source-branch: galactic
     source-subdir: demo_nodes_cpp
     stage-packages: [ros-galactic-ros2launch]
+    # Define the ROS 2 environement variable necessary for install and build time
     build-environment:
     - ROS_VERSION: '2'
     - ROS_DISTRO: galactic
@@ -39,7 +42,9 @@ apps:
   ros2-talker-listener:
     command: opt/ros/galactic/bin/ros2 launch demo_nodes_cpp talker_listener.launch.py
     plugs: [network, network-bind]
+    # Call the ros2-launch script to source our ROS environement before calling our actual command (ros2 launch in this case)
     command-chain: [snap/command-chain/ros2-launch]
+    # Define the ROS 2 environement variable necessary for runtime
     environment:
       PYTHONPATH: $SNAP/opt/ros/galactic/lib/python3.8/site-packages:$SNAP/usr/lib/python3/dist-packages:${PYTHONPATH}
       ROS_DISTRO: galactic
