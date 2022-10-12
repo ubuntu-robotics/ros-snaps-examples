@@ -26,6 +26,9 @@ parts:
           # import ROS 1 package
           vcs import --input snapped_ros1_pkg.rosinstall
 
+          # This demonstrates that the rosinstall file can be retrieve from a URL
+          # vcs import --input https://raw.githubusercontent.com/ros2/ros2/rolling/ros2.repos
+
 apps:
   # launching this application doesn't start the roscore unlike the second app using the launchfile
   snapped-ros1-pkg:
