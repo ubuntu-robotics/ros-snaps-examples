@@ -1,1 +1,1 @@
-- git: {local-name: snapped_ros1_pkg, uri: 'https://github.com/Guillaumebeuzeboc/snapped_ros1_pkg.git', version: main}
+- git: {local-name: ros_tutorials, uri: 'https://github.com/ros/ros_tutorials.git', version: noetic-devel}

@@ -12,10 +12,8 @@ parts:
     # See 'snapcraft plugins'
     plugin: catkin
     source: .
+    catkin-packages: roscpp_tutorials
     build-packages:
-      - libboost-filesystem1.71.0
-      - liblog4cxx-dev
-      - libboost-regex1.71.0
       - git
       - python3-vcstool
     stage-packages:
@@ -31,12 +29,12 @@ parts:
 
 apps:
   # launching this application doesn't start the roscore unlike the second app using the launchfile
-  snapped-ros1-pkg:
-    command: opt/ros/noetic/bin/rosrun snapped_ros1_pkg snapped_ros1_pkg_node
+  talker:
+    command: opt/ros/noetic/bin/rosrun roscpp_tutorials talker
     plugs: [network, network-bind]
     extensions: [ros1-noetic]
 
   snapped-ros1-launch:
-    command: opt/ros/noetic/bin/roslaunch snapped_ros1_pkg snapped.launch
+    command: opt/ros/noetic/bin/roslaunch roscpp_tutorials talker_listener.launch
     plugs: [network, network-bind]
     extensions: [ros1-noetic]
