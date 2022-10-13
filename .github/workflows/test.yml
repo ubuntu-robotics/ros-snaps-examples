@@ -38,7 +38,6 @@ jobs:
         with:
           # Select the example we want to build
           path: "${{ matrix.dir }}"
-          snapcraft-args: '--enable-experimental-extensions'
           snapcraft-channel: 'stable'
         env:
           SNAPCRAFT_ENABLE_EXPERIMENTAL_EXTENSIONS: 1
