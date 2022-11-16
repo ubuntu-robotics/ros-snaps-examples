@@ -45,8 +45,8 @@ We can export our credential from snapcraft cli by typing:
 This command generate a file called `exported.txt` that contains the secret value we need to export in GitHub.
 
 ## Store the credential in GitHub
-- In our GitHub project on [github.com](github.com) go to the "Settings" tab
-- Under the "Security" section, expand "Secrets" and the select "Actions"
+- In the GitHub project under the "Settings" tab
+- Within the "Security" section, expand "Secrets" and the select "Actions"
 - Choose "New repository secret".
 - Set the name to `STORE_LOGIN`, and paste the content of the `exported.txt` file as the value.
 
