@@ -2,7 +2,7 @@
 
 To keep our deployment in sync with our developement, snaps can be built and published from a GitHub Action.
 
-For this example, the GitHub Action will build and publish the [ros2-private-shared-memory](../shared_memory_foxy_core20/private-shared-memory/snap/snapcraft.yaml) snap example.
+For this example, the GitHub Action will build and publish the [ros2-humble-talker-listener](./snap/snapcraft.yaml) snap example.
 
 We can see the results of this workflow in the [Action tab](https://github.com/ubuntu-robotics/ros-snaps-examples/actions/workflows/example_snap_github_action.yaml).
 
@@ -26,7 +26,7 @@ Finally the job creates an artifact of the `.snap` so that it can be used by the
 The `publish` job is triggered after the `build` job but only if the GitHub Action was triggered by a push on `main` or a tag.
 
 The job starts by downloading the previously stored snap file.
-Then the snap file is uploaded to the [snapstore](https://snapcraft.io/ros2-shared-memory).
+Then the snap file is uploaded to the [snapstore](https://snapcraft.io/ros2-humble-talker-listener).
 
 The snap is published to a different [snapstore channel](https://snapcraft.io/docs/channels) depending if the current commit has been tagged (`candidate` channel) or not (`edge` channel).
 
@@ -40,7 +40,7 @@ We can export our credential from snapcraft cli by typing:
 
 `snapcraft export-login --snaps=${YOUR_SNAP_NAME} --acls package_access,package_push,package_update,package_release exported.txt`
 
-`${YOUR_SNAP_NAME}` must be replace by the actual snap name. Here: `ros2-shared-memory`.
+`${YOUR_SNAP_NAME}` must be replace by the actual snap name. Here: `ros2-humble-talker-listener`.
 
 This command generate a file called `exported.txt` that contains the secret value we need to export in GitHub.
 
@@ -49,3 +49,4 @@ This command generate a file called `exported.txt` that contains the secret valu
 - Under the "Security" section, expand "Secrets" and the select "Actions"
 - Choose "New repository secret".
 - Set the name to `STORE_LOGIN`, and paste the content of the `exported.txt` file as the value.
+
