@@ -12,6 +12,6 @@ You can get involved by:
 
 Robotics in Ubuntu will continue growing with our community. If you want to get involved:
 
-+ Join the [Discourse community forum]([url](https://forum.snapcraft.io/))
-+ Read our [Code of Conduct]([url](https://ubuntu.com/community/code-of-conduct?_ga=2.257795469.700127210.1669067579-38830517.1655463002))
-+ Report a bug or contribute on [Github]([url](https://github.com/ubuntu-robotics))
++ Join the [Discourse community forum](https://forum.snapcraft.io/)
++ Read our [Code of Conduct](https://ubuntu.com/community/code-of-conduct?_ga=2.257795469.700127210.1669067579-38830517.1655463002)
++ Report a bug or contribute on [Github](https://github.com/ubuntu-robotics)
