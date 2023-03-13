@@ -23,9 +23,6 @@ jobs:
       with:
         # Select the example we want to build
         path: 'github_action'
-      env:
-        # Enable experimental extensions for the ros2-humble extension
-        SNAPCRAFT_ENABLE_EXPERIMENTAL_EXTENSIONS: 1
 
     # Make sure the snap is installable
     - run: |

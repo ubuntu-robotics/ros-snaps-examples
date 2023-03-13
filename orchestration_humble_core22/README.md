@@ -7,7 +7,7 @@ Make sure [`snapd`](https://snapcraft.io/docs/installing-snapd) and [`snapcraft`
 
 Then at the root of this file:
 
-`SNAPCRAFT_ENABLE_EXPERIMENTAL_EXTENSIONS=1 snapcraft`
+`snapcraft`
 
 `sudo snap install talker-listener_0.1_amd64.snap --dangerous`
 

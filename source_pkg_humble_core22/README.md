@@ -3,7 +3,7 @@ ROS 2 Humble package, packed as a snap.
 
 The ROS package contains a node that simply publishes a `geometry_msgs::msg::Twist` on `fake_pose` containing random data.
 ## How to generate the snap
-- `SNAPCRAFT_ENABLE_EXPERIMENTAL_EXTENSIONS=1 snapcraft`
+- `snapcraft`
 ## How to install the snap
 - `sudo snap install snapped-ros2-pkg*.snap --dangerous`
 ## How to run the snap
