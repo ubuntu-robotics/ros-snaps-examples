@@ -32,7 +32,7 @@ parts:
     source-subdir: demo_nodes_cpp
     stage-packages: [ros-foxy-ros2launch]
     stage:
-            - -opt/ros/snap/*setup.sh
+      - -opt/ros/snap/*setup.*
 
 apps:
   ros2-talker-listener:
