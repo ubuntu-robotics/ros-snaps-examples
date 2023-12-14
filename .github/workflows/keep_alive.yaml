@@ -1,0 +1,16 @@
+name: Keep alive the workflow for this entire repository
+on:
+  schedule:
+    - cron: "0 0 * * 1"
+  workflow_dispatch:
+
+jobs:
+  keep_alive:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # we don't want the dummy commit to appear on a branch we actively use
+          # the dummy commit are going to be applied to the _keepalive branch
+          ref: _keepalive
+      - uses: gautamkrishnar/keepalive-workflow@v1
