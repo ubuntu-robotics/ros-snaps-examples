@@ -1,0 +1,42 @@
+name: private_code_snap_github_action
+on:
+  push:
+    tags:
+      - '*'
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  # For manual trigger
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      snap-file: ${{ steps.build-snap.outputs.snap }}
+    steps:
+    - uses: actions/checkout@v3
+    - name: Create ~/.ssh
+      run: |
+        mkdir ~/.ssh
+        echo "${{ secrets.PRIVATE_RSA_KEY }}" > ~/.ssh/id_rsa
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan -H github.com >> ~/.ssh/known_hosts
+    - uses: snapcore/action-build@v1
+      id: build-snap
+      with:
+        # Select the example we want to build
+        path: 'github_action_private_source'
+        snapcraft-args: --bind-ssh
+    # Make sure the snap is installable
+    - run: |
+        sudo snap install --dangerous ${{ steps.build-snap.outputs.snap }}
+    # Do some testing with the snap
+    - run: |
+        snap-with-private-source
+    - uses: actions/upload-artifact@v3
+      with:
+        name: ros2-snap
+        path: ${{ steps.build-snap.outputs.snap }}

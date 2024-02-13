@@ -1,0 +1,21 @@
+name: snap-with-private-source
+version: '0.1'
+summary: A snap using private sources
+description: |
+ This snap uses source code hosted privately.
+
+grade: stable
+confinement: strict
+base: core22
+
+parts:
+ my-part:
+   plugin: dump
+   # This repository is private.
+   source: git@github.com:ubuntu-robotics/hello-world.git
+   organize:
+      '*.bash' : usr/bin/
+
+apps:
+ snap-with-private-source:
+   command: usr/bin/hello-world.bash
