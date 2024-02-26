@@ -30,6 +30,8 @@ jobs:
       fail-fast: false
       matrix:
         dir: ${{ fromJson(needs.collect_dirs.outputs.dirs) }}
+        exclude:
+         - dir: "./github_action_private_source/snapcraft.yaml"
     name: "Snap ${{ matrix.dir }}"
     steps:
       - uses: actions/checkout@v3
