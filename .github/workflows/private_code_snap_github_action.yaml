@@ -38,5 +38,6 @@ jobs:
         snap-with-private-source
     - uses: actions/upload-artifact@v3
       with:
-        name: ros2-snap
+        name: private_code_snap
         path: ${{ steps.build-snap.outputs.snap }}
+        retention-days: 7
