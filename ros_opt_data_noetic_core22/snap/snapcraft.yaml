@@ -1,0 +1,23 @@
+name: ros-opt-data-example
+version: '0.1'
+summary: Snap using ros-opt-data interface
+description: |
+    Example on how to enable access to the host folder /opt/ros from inside a snap
+base: core22
+
+grade: devel # must be 'stable' to release into candidate/stable channels
+confinement: strict
+
+architectures:
+  - build-on: [amd64]
+    build-for: [amd64]
+
+apps:
+  run-example-cat:
+    command: ./cat_files_content.sh
+    plugs: [ros-opt-data]
+
+parts:
+  dump_scripts:
+    plugin: dump
+    source: scripts
