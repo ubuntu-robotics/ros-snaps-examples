@@ -22,9 +22,8 @@ parts:
   # Create an additional part downloading the core meta-package and importing the ROS 2 command-chain
   ros2-galactic-extension:
     build-packages: [ros-galactic-ros-core] # Installing the core meta-package
-    override-build: install -D -m 0755 launch ${SNAPCRAFT_PART_INSTALL}/snap/command-chain/ros2-launch # Install the ros2-launch script responsible of sourcing your ROS environment
+    override-build: install -D -m 0755 $SNAP/share/snapcraft/extensions/ros2/launch ${SNAPCRAFT_PART_INSTALL}/snap/command-chain/ros2-launch # Install the ros2-launch script responsible of sourcing your ROS environment
     plugin: nil # Plugin for parts with no source to import
-    source: $SNAPCRAFT_EXTENSIONS_DIR/ros2 # Get the ros2-launch script from snapcraft itself
 
   ros-demos:
     after: [ros2-galactic-extension] # This part depend on the ros2-galactic-extension part and every step will happen after the depending part steps
