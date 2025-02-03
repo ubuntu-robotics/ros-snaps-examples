@@ -17,7 +17,7 @@ jobs:
     outputs:
       snap-file: ${{ steps.build-snap.outputs.snap }}
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - uses: snapcore/action-build@v1
       id: build-snap
       with:
@@ -30,7 +30,7 @@ jobs:
     # Do some testing with the snap
     - run: |
         ros2-humble-talker-listener --print
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with:
         name: ros2-snap
         path: ${{ steps.build-snap.outputs.snap }}
@@ -41,7 +41,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-    - uses: actions/download-artifact@v3
+    - uses: actions/download-artifact@v4
       with:
         name: ros2-snap
         path: .
