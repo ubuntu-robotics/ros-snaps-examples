@@ -20,7 +20,7 @@ jobs:
     outputs:
       snap-file: ${{ steps.build-snap.outputs.snap }}
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Create ~/.ssh
       run: |
         mkdir ~/.ssh
@@ -39,7 +39,7 @@ jobs:
     # Do some testing with the snap
     - run: |
         snap-with-private-source
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with:
         name: private_code_snap
         path: ${{ steps.build-snap.outputs.snap }}

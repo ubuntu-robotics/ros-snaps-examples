@@ -18,7 +18,7 @@ jobs:
     outputs:
       dirs: ${{ steps.dirs.outputs.dirs }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - id: dirs
         run: echo "dirs=$(find . -type f -name 'snapcraft.yaml' | sed -r 's|\/snap/[^/]+$||' |sort |uniq |jq --raw-input --slurp --compact-output 'split("\n")[:-1]')" >> $GITHUB_OUTPUT
 
@@ -34,7 +34,7 @@ jobs:
          - dir: "./github_action_private_source/snapcraft.yaml"
     name: "Snap ${{ matrix.dir }}"
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: snapcore/action-build@v1
         id: build-snap
         with:
@@ -49,7 +49,7 @@ jobs:
       # - run: ros2-shared-memory.ros2-talker-listener --print
 
       # @todo set unique artifact or snap names
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         continue-on-error: true
         with:
           name: snaps
