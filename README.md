@@ -13,6 +13,7 @@ This repository hold examples used in documentation and blogposts.
 - [source_pkg_dashing_core18](./source_pkg_dashing_core18/README.md) - Snap a ROS 2 Dashing package from source on core18.
 - [source_pkg_foxy_core20](./source_pkg_foxy_core20/README.md) - Snap a ROS 2 Foxy package from source on core20.
 - [source_pkg_humble_core22](./source_pkg_humble_core22/README.md) - Snap a ROS 2 Humble package from source on core22.
+- [source_pkg_jazzy_core24](./source_pkg_jazzy_core24/README.md) - Snap a ROS 2 Jazzy package from source on core24.
 - [source_pkg_melodic_core18](./source_pkg_melodic_core18/README.md) - Snap a ROS Melodic package from source on core18.
 - [source_pkg_noetic_core20](./source_pkg_noetic_core20/README.md) - Snap a ROS noetic package from source on core20.
 - [github_action](./github_action/README.md) - Build and publish a snap with GitHub Action.
