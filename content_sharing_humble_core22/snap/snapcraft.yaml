@@ -19,6 +19,6 @@ parts:
 
 apps:
   ros2-humble-cs-talker-listener:
-    command: opt/ros/humble/bin/ros2 launch demo_nodes_cpp talker_listener.launch.py
+    command: ros2 launch demo_nodes_cpp talker_listener.launch.py
     plugs: [network, network-bind]
     extensions: [ros2-humble-ros-base]
