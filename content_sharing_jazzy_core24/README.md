@@ -11,4 +11,4 @@ Snapcraft's ROS 2 content-sharing extension for Jazzy.
 - `sudo snap install ros2-jazzy-cs-talker-listener_*.snap --dangerous`
 
 ## How to run the snap
-- `ros2-jazzy-cs-talker-listener.ros2-jazzy-content-sharing-talker-listener`
+- `ros2-jazzy-cs-talker-listener.ros2-jazzy-cs-talker-listener`

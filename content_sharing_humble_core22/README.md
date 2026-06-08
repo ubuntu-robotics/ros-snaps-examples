@@ -11,4 +11,4 @@ Snapcraft's ROS 2 content-sharing extension for Humble.
 - `sudo snap install ros2-humble-cs-talker-listener_*.snap --dangerous`
 
 ## How to run the snap
-- `ros2-humble-cs-talker-listener.ros2-humble-content-sharing-talker-listener`
+- `ros2-humble-cs-talker-listener.ros2-humble-cs-talker-listener`
