@@ -40,7 +40,7 @@ jobs:
         with:
           # Select the example we want to build
           path: "${{ matrix.dir }}"
-          snapcraft-channel: ${{ contains(matrix.dir, 'core18') && '7.x/stable' || 'stable' }}
+          snapcraft-channel: ${{ contains(matrix.dir, 'core18') && '7.x/stable' || contains(matrix.dir, 'core20') && '8.x/stable' || 'stable' }}
 
       # Make sure the snap is installable
       - run: sudo snap install --dangerous ${{ steps.build-snap.outputs.snap }}
