@@ -35,6 +35,20 @@ jobs:
     name: "Snap ${{ matrix.dir }}"
     steps:
       - uses: actions/checkout@v4
+
+      - name: Determine snapcraft channel
+        id: snapcraft
+        run: |
+          if [[ "${{ matrix.dir }}" == *core18* ]]; then
+            echo "channel=7.x/stable" >> $GITHUB_OUTPUT
+          elif [[ "${{ matrix.dir }}" == *core20* ]]; then
+            echo "channel=8.x/stable" >> $GITHUB_OUTPUT
+          elif [[ "${{ matrix.dir }}" == *non_lts_galactic* ]]; then
+            echo "channel=8.x/stable" >> $GITHUB_OUTPUT
+          else
+            echo "channel=stable" >> $GITHUB_OUTPUT
+          fi
+
       - uses: snapcore/action-build@v1
         id: build-snap
         env:
@@ -42,7 +56,7 @@ jobs:
         with:
           # Select the example we want to build
           path: "${{ matrix.dir }}"
-          snapcraft-channel: ${{ contains(matrix.dir, 'core18') && '7.x/stable' || 'stable' }}
+          snapcraft-channel: ${{ steps.snapcraft.outputs.channel }}
 
       # Make sure the snap is installable
       - run: sudo snap install --dangerous ${{ steps.build-snap.outputs.snap }}
