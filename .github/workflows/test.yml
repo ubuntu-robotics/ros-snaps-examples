@@ -51,6 +51,8 @@ jobs:
 
       - uses: snapcore/action-build@v1
         id: build-snap
+        env:
+          SNAPCRAFT_ENABLE_EXPERIMENTAL_EXTENSIONS: 1
         with:
           # Select the example we want to build
           path: "${{ matrix.dir }}"
