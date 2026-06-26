@@ -13,7 +13,7 @@ description: |
 
   - With a Zenoh router (talker-router / listener-router): nodes rely on a running Zenoh
     router for peer discovery and message routing. Start the router snap before
-    running these apps.
+    running these apps. See https://snapcraft.io/zenohd.
 
 grade: devel
 confinement: strict
