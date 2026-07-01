@@ -25,7 +25,9 @@ target_include_directories(snapped_ros2_pkg_node PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
   $<INSTALL_INTERFACE:include>)
 
-ament_target_dependencies(snapped_ros2_pkg_node rclcpp geometry_msgs)
+target_link_libraries(snapped_ros2_pkg_node
+  rclcpp::rclcpp
+  ${geometry_msgs_TARGETS})
 
 install(TARGETS snapped_ros2_pkg_node
   DESTINATION lib/${PROJECT_NAME})
