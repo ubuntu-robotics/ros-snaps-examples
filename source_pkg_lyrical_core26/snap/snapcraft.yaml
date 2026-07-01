@@ -2,7 +2,7 @@ name: snapped-ros2-pkg
 version: '0.1'
 summary: Basic ROS 2 package snap
 description: |
-  Basic ROS 2 package snap with config and launchfile based on core26
+  Basic ROS 2 package snap with config and launch file based on core26
 grade: stable
 confinement: strict
 base: core26
