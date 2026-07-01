@@ -1,0 +1,67 @@
+name: ros2-jazzy-talker-listener-zenoh
+version: '0.1'
+summary: ROS 2 Jazzy talker/listener demo using rmw_zenoh_cpp
+description: |
+  Demonstrates a ROS 2 talker/listener pair using Zenoh as the middleware
+  (rmw_zenoh_cpp), which replaces DDS entirely.
+
+  Two modes are provided:
+
+  - Without a router (talker / listener): peer discovery
+    is handled via multicast scouting so no router is needed. Both apps must
+    run on the same host.
+
+  - With a Zenoh router (talker-router / listener-router): nodes rely on a running Zenoh
+    router for peer discovery and message routing. Start the router snap before
+    running these apps. See https://snapcraft.io/zenohd.
+
+grade: devel
+confinement: strict
+base: core24
+
+parts:
+  ros-demos:
+    plugin: colcon
+    source: https://github.com/ros2/demos.git
+    source-branch: jazzy
+    source-subdir: demo_nodes_cpp
+    stage-packages:
+      - ros-jazzy-rmw-zenoh-cpp
+      - ros-jazzy-ros2run
+
+apps:
+  # ── With Zenoh router ────────────────────────────────────────────────────
+  # A Zenoh router must be running before starting these apps.
+  talker-router:
+    command: opt/ros/jazzy/bin/ros2 run demo_nodes_cpp talker
+    plugs: [network, network-bind]
+    extensions: [ros2-jazzy]
+    environment:
+      RMW_IMPLEMENTATION: rmw_zenoh_cpp
+
+  listener-router:
+    command: opt/ros/jazzy/bin/ros2 run demo_nodes_cpp listener
+    plugs: [network, network-bind]
+    extensions: [ros2-jazzy]
+    environment:
+      RMW_IMPLEMENTATION: rmw_zenoh_cpp
+
+  # ── Without Zenoh router (multicast scouting) ─────────────────────────
+  # Both apps must run on the same host. No router required.
+  talker:
+    command: opt/ros/jazzy/bin/ros2 run demo_nodes_cpp talker
+    plugs: [network, network-bind]
+    extensions: [ros2-jazzy]
+    environment:
+      RMW_IMPLEMENTATION: rmw_zenoh_cpp
+      ZENOH_ROUTER_CHECK_ATTEMPTS: '-1'
+      ZENOH_CONFIG_OVERRIDE: 'scouting/multicast/enabled=true'
+
+  listener:
+    command: opt/ros/jazzy/bin/ros2 run demo_nodes_cpp listener
+    plugs: [network, network-bind]
+    extensions: [ros2-jazzy]
+    environment:
+      RMW_IMPLEMENTATION: rmw_zenoh_cpp
+      ZENOH_ROUTER_CHECK_ATTEMPTS: '-1'
+      ZENOH_CONFIG_OVERRIDE: 'scouting/multicast/enabled=true'
