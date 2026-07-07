@@ -45,6 +45,8 @@ jobs:
             echo "channel=8.x/stable" >> $GITHUB_OUTPUT
           elif [[ "${{ matrix.dir }}" == *non_lts_galactic* ]]; then
             echo "channel=8.x/stable" >> $GITHUB_OUTPUT
+          elif [[ "${{ matrix.dir }}" == "*core26*"]]
+            echo "channel=latest/edge" >> $GITHUB_OUTPUT
           else
             echo "channel=stable" >> $GITHUB_OUTPUT
           fi
