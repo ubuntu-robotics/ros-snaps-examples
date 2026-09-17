@@ -13,6 +13,7 @@ This repository hold examples used in documentation and blogposts.
 - [source_pkg_dashing_core18](./source_pkg_dashing_core18/README.md) - Snap a ROS 2 Dashing package from source on core18.
 - [source_pkg_foxy_core20](./source_pkg_foxy_core20/README.md) - Snap a ROS 2 Foxy package from source on core20.
 - [content_sharing_humble_core22](./content_sharing_humble_core22/README.md) - ROS 2 Humble content-sharing talker/listener using ros2-humble-ros-base.
+- [talker_listener_jazzy_core24](./talker_listener_jazzy_core24/README.md) - ROS 2 Jazzy talker/listener with its runtime included in the snap.
 - [content_sharing_jazzy_core24](./content_sharing_jazzy_core24/README.md) - ROS 2 Jazzy content-sharing talker/listener using ros2-jazzy-ros-base.
 - [source_pkg_humble_core22](./source_pkg_humble_core22/README.md) - Snap a ROS 2 Humble package from source on core22.
 - [source_pkg_jazzy_core24](./source_pkg_jazzy_core24/README.md) - Snap a ROS 2 Jazzy package from source on core24.
